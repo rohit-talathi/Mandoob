@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="40dp"
+        android:layout_weight="4"
+        android:src="@drawable/mandoob_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Please select your language"
+       android:gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        />
+
+
+    <Button
+        android:id="@+id/btn_english"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:layout_marginTop="10dp"
+        android:text="English"
+        android:textColor="#FFF"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstyle"
+        />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        />
+
+    <Button
+        android:id="@+id/btn_arebic"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:layout_marginTop="10dp"
+        android:text="Arebic"
+        android:textColor="#FFF"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstyle"
+        />
+
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">mandoob</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- arrow circle -->
+    <string name="icon_pre_arrow_circle">&lt;</string>
+    <string name="icon_next_arrow_circle">&gt;</string>
+    <!-- arrow  -->
+    <string name="icon_pre_arrow">&#xf060;;</string>
+    <string name="icon_next_arrow">&#xf061;;</string>
+    <!-- angle  -->
+    <string name="icon_pre_angle">&#xf104;</string>
+    <string name="icon_next_angle">&#xf105;</string>
+    <!-- caret  -->
+    <string name="icon_pre_caret">&#xf0d9;</string>
+    <string name="icon_next_caret">&#xf0da;</string>
+    <!-- chevron circle  -->
+    <string name="icon_pre_chevron_circle">&#xf137;</string>
+    <string name="icon_next_chevron_circle">&#xf138;</string>
+    <!-- chevron  -->
+    <string name="icon_pre_chevron">&#xf053;</string>
+    <string name="icon_next_chevron">&#xf054;</string>
+</resources>
