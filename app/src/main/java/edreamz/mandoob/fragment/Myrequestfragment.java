@@ -45,8 +45,6 @@ public class Myrequestfragment extends Fragment implements BaseSliderView.OnSlid
         }
 
 
-
-
         return view;
     }
 
