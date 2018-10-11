@@ -29,11 +29,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edreamz.mandoob.CustomGridViewActivity2;
+import edreamz.mandoob.CustomGridViewActivity3;
 import edreamz.mandoob.R;
-import edreamz.mandoob.model.Subcategory;
+import edreamz.mandoob.model.Doc_upload;
+import edreamz.mandoob.model.Subofsubcategory;
 import edreamz.mandoob.network.Appcontroller;
 import edreamz.mandoob.network.MyPreferenceManager;
+
+import static edreamz.mandoob.fragment.Homefragment.flag;
 
 /**
  * Created by Belal on 18/09/16.
@@ -46,8 +49,9 @@ SliderLayout imageslider;
     GridView category_grid;
     String category_id;
     String subcategory_id;
-    ArrayList<Subcategory> subcategorylist=new ArrayList<>();
+    ArrayList<Subofsubcategory> subtosubcategorylist=new ArrayList<>();
     MyPreferenceManager Sharedpref;
+    ArrayList<Doc_upload> documentlist = new ArrayList<>();
 
     @Nullable
     @Override
@@ -99,18 +103,34 @@ SliderLayout imageslider;
                             for(int i = 0; i < jsonArray1.length(); i++)
                             {
                                 JSONObject object3 = jsonArray1.getJSONObject(i);
-                                Subcategory subcategory= new Subcategory();
-                                subcategory.setId(object3.getString("id"));
-                                subcategory.setCategory_id(object3.getString("category_id"));
-                                subcategory.setName(object3.getString("name"));
-                                subcategory.setDescription(object3.getString("description"));
-                                subcategory.setImage(object3.getString("image"));
-                                subcategory.setIs_subofsubcategory(object3.getInt("is_subofsubcategory"));
-                                subcategory.setInfo(object3.getString("info"));
-                                subcategorylist.add(subcategory);
-                            }
+                                Subofsubcategory subofsubcategory= new Subofsubcategory();
+                                subofsubcategory.setId(object3.getString("id"));
+                                subofsubcategory.setCategory_id(object3.getString("category_id"));
+                                subofsubcategory.setSubcategory_id(object3.getString("subcategory_id"));
+                                subofsubcategory.setName(object3.getString("name"));
+                                subofsubcategory.setDescription(object3.getString("description"));
+                                subofsubcategory.setImage(object3.getString("image"));
+                                subofsubcategory.setFlag("2");
+
+                                JSONObject info = object3.getJSONObject("info");
+                                subofsubcategory.setCategory(info.getString("Category"));
+                                subofsubcategory.setApplication_fee(info.getString("application_fee"));
+                                subofsubcategory.setService_fee(info.getString("service_fee"));
+                                subofsubcategory.setDuration(info.getString("duration"));
+
+                                subofsubcategory.setDocument_count(info.getString("document_count"));
+                                JSONArray doc_upload = info.getJSONArray("doc_upload");
+                                for (int j = 0; j < doc_upload.length(); j++) {
+                                    JSONObject document = jsonArray1.getJSONObject(i);
+                                    Doc_upload docUpload = new Doc_upload();
+                                    docUpload.setId(document.getString("id"));
+                                    documentlist.add(docUpload);
+                                }
+                                subofsubcategory.setDocumentlist(documentlist);
+                                subtosubcategorylist.add(subofsubcategory);
+                                }
                             pDialog.dismiss();
-                            CustomGridViewActivity2 adapterViewAndroid = new CustomGridViewActivity2(getActivity(), subcategorylist);
+                            CustomGridViewActivity3 adapterViewAndroid = new CustomGridViewActivity3(getActivity(), subtosubcategorylist);
                             category_grid.setAdapter(adapterViewAndroid);
                             ;
                             category_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,29 +138,25 @@ SliderLayout imageslider;
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
                                                         int i, long id) {
-                                    if (subcategorylist.get(i).getIs_subofsubcategory() > 0) {
-                                        Fragment fragment = null;
-                                        fragment = new SubtoSubCategoryfragment();
-                                        Bundle b=new Bundle();
-                                        b.putString("category_id",category_id);
-                                        b.putString("subcategory_id",subcategorylist.get(i).getId());
-                                        fragment.setArguments(b);
-                                        if (fragment != null) {
-                                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                            ft.replace(R.id.content_frame, fragment);
-                                            ft.commit();
-                                        }
-                                    }else
-                                    {
+                                    Fragment fragment = null;
+                                    fragment = new Myrequestfragment();
+                                    Subofsubcategory subofsubcategory=subtosubcategorylist.get(i);
+                                    Doc_upload doc_upload=documentlist.get(i);
+                                    Bundle b = new Bundle();
+                                    flag=2;
+                                    b.putParcelable("Subofsubcategory", subofsubcategory);
+                                    b.putParcelable("documents", doc_upload);
 
+                                    fragment.setArguments(b);
+                                    if (fragment != null) {
+                                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                        ft.replace(R.id.content_frame, fragment);
+                                        ft.commit();
                                     }
                                 }
                             });
 
-
-
-
-                        } catch (JSONException e) {
+                            } catch (JSONException e) {
                             e.printStackTrace();
                         }
 

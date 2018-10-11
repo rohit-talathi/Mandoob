@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -49,6 +50,7 @@ SliderLayout imageslider;
     MyPreferenceManager Sharedpref;
     ArrayList<String>imagelist=new ArrayList<>();
     ArrayList<Category>categorylist=new ArrayList<>();
+    public static int flag= 0;
 
     @Nullable
     @Override
@@ -175,6 +177,10 @@ SliderLayout imageslider;
         }
 
         };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         Appcontroller.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
 

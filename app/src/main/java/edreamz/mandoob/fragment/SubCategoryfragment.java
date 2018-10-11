@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,6 +36,8 @@ import edreamz.mandoob.model.Doc_upload;
 import edreamz.mandoob.model.Subcategory;
 import edreamz.mandoob.network.Appcontroller;
 import edreamz.mandoob.network.MyPreferenceManager;
+
+import static edreamz.mandoob.fragment.Homefragment.flag;
 
 /**
  * Created by Belal on 18/09/16.
@@ -120,6 +123,8 @@ public class SubCategoryfragment extends Fragment implements BaseSliderView.OnSl
                                 subcategory.setId(object3.getString("id"));
                                 subcategory.setCategory_id(object3.getString("category_id"));
                                 subcategory.setName(object3.getString("name"));
+
+                                subcategory.setFlag("1");
                                 subcategory.setDescription(object3.getString("description"));
                                 subcategory.setImage(object3.getString("image"));
                                 subcategory.setIs_subofsubcategory(object3.getInt("is_subofsubcategory"));
@@ -158,6 +163,7 @@ public class SubCategoryfragment extends Fragment implements BaseSliderView.OnSl
                                         fragment = new SubtoSubCategoryfragment();
                                         Log.d("a",subcategorylist.toString());
                                         Bundle b = new Bundle();
+                                        flag=1;
                                         b.putString("category_id", category_id);
                                         b.putString("subcategory_id", subcategorylist.get(i).getId());
                                         fragment.setArguments(b);
@@ -173,7 +179,9 @@ public class SubCategoryfragment extends Fragment implements BaseSliderView.OnSl
                                         Log.d("a",subcategorylist.toString());
                                         Subcategory subcategory=subcategorylist.get(i);
                                         Doc_upload doc_upload=documentlist.get(i);
+                                        Toast.makeText(getActivity(), subcategory.getCategory_id(), Toast.LENGTH_SHORT).show();
                                         Bundle b = new Bundle();
+                                        flag=1;
                                         b.putParcelable("Subcateory", subcategory);
                                         b.putParcelable("documents", doc_upload);
                                         fragment.setArguments(b);

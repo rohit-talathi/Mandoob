@@ -5,26 +5,33 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Subcategory implements Parcelable {
+public class Subofsubcategory implements Parcelable {
 
     private String id;
+    private String category_id;
+    private String subcategory_id;
     private String name;
     private String description;
     private String image;
-    private int is_subcategory;
-    private String info;
-    private String category_id;
-    private int is_subofsubcategory;
-    private String Category;
-    private String application_fee;
-    private String service_fee;
-    private String duration;
-    private String document_count;
-    private ArrayList<Doc_upload> documentlist;
     private String flag;
 
-    public Subcategory() {
+    private String Category;
+      private String  application_fee;
+    private String service_fee;
+      private String duration;
+    private String document_count;
+    private ArrayList<Doc_upload> documentlist;
 
+    public Subofsubcategory() {
+
+    }
+
+    public String getSubcategory_id() {
+        return subcategory_id;
+    }
+
+    public void setSubcategory_id(String subcategory_id) {
+        this.subcategory_id = subcategory_id;
     }
 
     public String getFlag() {
@@ -91,13 +98,6 @@ public class Subcategory implements Parcelable {
         this.category_id = category_id;
     }
 
-    public int getIs_subofsubcategory() {
-        return is_subofsubcategory;
-    }
-
-    public void setIs_subofsubcategory(int is_subofsubcategory) {
-        this.is_subofsubcategory = is_subofsubcategory;
-    }
 
     public String getId() {
         return id;
@@ -131,36 +131,20 @@ public class Subcategory implements Parcelable {
         this.image = image;
     }
 
-    public int getIs_subcategory() {
-        return is_subcategory;
-    }
 
-    public void setIs_subcategory(int is_subcategory) {
-        this.is_subcategory = is_subcategory;
-    }
 
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public static Creator<Subcategory> getCREATOR() {
+    public static Creator<Subofsubcategory> getCREATOR() {
         return CREATOR;
     }
 
 
-    public Subcategory(Parcel in) {
+    public Subofsubcategory(Parcel in) {
         id = in.readString();
+        category_id = in.readString();
+        subcategory_id= in.readString();
         name = in.readString();
         description = in.readString();
         image = in.readString();
-        is_subcategory = in.readInt();
-        info = in.readString();
-        category_id = in.readString();
-        is_subofsubcategory = in.readInt();
         Category = in.readString();
         application_fee = in.readString();
         service_fee = in.readString();
@@ -169,15 +153,15 @@ public class Subcategory implements Parcelable {
         flag=in.readString();
     }
 
-    public static final Creator<Subcategory> CREATOR = new Creator<Subcategory>() {
+    public static final Creator<Subofsubcategory> CREATOR = new Creator<Subofsubcategory>() {
         @Override
-        public Subcategory createFromParcel(Parcel in) {
-            return new Subcategory(in);
+        public Subofsubcategory createFromParcel(Parcel in) {
+            return new Subofsubcategory(in);
         }
 
         @Override
-        public Subcategory[] newArray(int size) {
-            return new Subcategory[size];
+        public Subofsubcategory[] newArray(int size) {
+            return new Subofsubcategory[size];
         }
     };
 
@@ -192,10 +176,8 @@ public class Subcategory implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(description);
         parcel.writeString(image);
-        parcel.writeInt(is_subcategory);
-        parcel.writeString(info);
         parcel.writeString(category_id);
-        parcel.writeInt(is_subofsubcategory);
+        parcel.writeString(subcategory_id);
         parcel.writeString(Category);
         parcel.writeString(application_fee);
         parcel.writeString(service_fee);
